@@ -1,109 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Najuuum | Portfolio</title>
-    <style>
-        /* Modern Design Styling */
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-        }
-        header {
-            background: linear-gradient(135deg, #1a1c1e 0%, #2ea44f 100%);
-            color: white;
-            padding: 4rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: -40px auto 40px auto;
-        }
-        .card {
-            background: white;
-            padding: 35px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        h1 { margin: 0; font-size: 2.5rem; }
-        h2 {
-            color: #2ea44f;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        .course-box {
-            background: #f8fff9;
-            border: 1px solid #c8e6c9;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 6px solid #2ea44f;
-        }
-        .email-link {
-            display: inline-block;
-            background: #2ea44f;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.2s;
-            margin-top: 10px;
-        }
-        .email-link:hover {
-            transform: translateY(-3px);
-            background: #2c974b;
-        }
-        footer {
-            text-align: center;
-            padding: 3rem;
-            color: #888;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Black Calculator</title>
+  <style>
+    body{
+      margin:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:#000;
+      font-family:Arial, Helvetica, sans-serif;
+    }.calculator{
+  width:300px;
+  background:#111;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 20px rgba(255,0,0,0.4);
+}
+
+#display{
+  width:100%;
+  height:70px;
+  background:#000;
+  color:#0f0;
+  border:none;
+  border-radius:10px;
+  font-size:28px;
+  text-align:right;
+  padding:10px;
+  margin-bottom:15px;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+button{
+  height:55px;
+  border:none;
+  border-radius:12px;
+  font-size:20px;
+  cursor:pointer;
+  background:#222;
+  color:white;
+  transition:0.2s;
+}
+
+button:hover{
+  opacity:0.8;
+}
+
+.num{
+  background:#1f2933;
+}
+
+.op{
+  background:#b91c1c; /* red */
+}
+
+.clear{
+  background:#dc2626;
+}
+
+.equal{
+  background:#16a34a;
+  grid-column:span 2;
+  font-size:22px;
+}
+
+  </style>
 </head>
-<body>
+<body>  <div class="calculator"><input type="text" id="display" readonly>
 
-    <header>
-        <h1>Welcome to Najuuum's Portfolio</h1>
-        <p>Aspiring Developer & Tech Enthusiast</p>
-    </header>
+<div class="buttons">
 
-    <div class="container">
-        
-        <div class="card">
-            <h2>About Me</h2>
-            <p>Hi, I am <strong>Najuuum</strong>. I am a passionate learner currently exploring the world of technology and software development. I use GitHub to document my progress and share the projects I build along the way.</p>
-        </div>
+  <button class="clear" onclick="clearAll()">C</button>
+  <button class="op" onclick="percent()">%</button>
+  <button class="op" onclick="del()">DEL</button>
+  <button class="op" onclick="addOp('/')">÷</button>
 
-        <div class="card">
-            <h2>Current Education</h2>
-            <div class="course-box">
-                <p>I am currently enrolled in a <strong>Professional Coding Course</strong>, focusing on building modern web applications and mastering version control systems like Git.</p>
-            </div>
-            <p>My goal is to transition into a full-time role in tech where I can solve real-world problems through code.</p>
-        </div>
+  <button class="num" onclick="addNum('7')">7</button>
+  <button class="num" onclick="addNum('8')">8</button>
+  <button class="num" onclick="addNum('9')">9</button>
+  <button class="op" onclick="addOp('*')">×</button>
 
-        <div class="card" style="text-align: center;">
-            <h2>Get In Touch</h2>
-            <p>I am always open to collaborations or networking. You can reach me directly at:</p>
-            <p><strong>Najmashaafici3@gmail.com</strong></p>
-            <a href="mailto:Najmashaafici3@gmail.com" class="email-link">Contact Me via Email</a>
-        </div>
+  <button class="num" onclick="addNum('4')">4</button>
+  <button class="num" onclick="addNum('5')">5</button>
+  <button class="num" onclick="addNum('6')">6</button>
+  <button class="op" onclick="addOp('-')">−</button>
 
-    </div>
+  <button class="num" onclick="addNum('1')">1</button>
+  <button class="num" onclick="addNum('2')">2</button>
+  <button class="num" onclick="addNum('3')">3</button>
+  <button class="op" onclick="addOp('+')">+</button>
 
-    <footer>
-        <p>&copy; 2026 Najuuum. Hosted with ❤️ on GitHub Pages.</p>
-    </footer>
+  <button class="num" onclick="addNum('0')">0</button>
+  <button class="num" onclick="addNum('.')">.</button>
+  <button class="equal" onclick="calc()">=</button>
 
-</body>
+</div>
+
+  </div>  <script>
+    const display = document.getElementById("display");
+
+    let current = "";
+
+    function addNum(num){
+      current += num;
+      display.value = current;
+    }
+
+    function addOp(op){
+      if(current === "") return;
+
+      const last = current.slice(-1);
+
+      if("+-*/".includes(last)){
+        current = current.slice(0,-1) + op;
+      }else{
+        current += op;
+      }
+
+      display.value = current;
+    }
+
+    function clearAll(){
+      current = "";
+      display.value = "";
+    }
+
+    function del(){
+      current = current.slice(0,-1);
+      display.value = current;
+    }
+
+    function percent(){
+      if(current === "") return;
+      try{
+        current = (eval(current)/100).toString();
+        display.value = current;
+      }catch{
+        display.value = "Error";
+        current = "";
+      }
+    }
+
+    function calc(){
+      if(current === "") return;
+
+      try{
+        let result = eval(current);
+        display.value = result;
+        current = result.toString();
+      }catch{
+        display.value = "Error";
+        current = "";
+      }
+    }
+  </script></body>
 </html>
